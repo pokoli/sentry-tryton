@@ -1,0 +1,21 @@
+
+.reveal .enfassis {
+  color: #e7ad52;
+}
+
+.reveal .pre {
+  display: block;
+  position: relative;
+  margin: 2px auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: monospace;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  color: #e7ad52;
+ }
+div.slide {
+    background:url("../img/logo_aritmos.png");
+    background-position: 20px 20px;
+    background-repeat: no-repeat;
+}

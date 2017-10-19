@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Sentry and Tryton Integration</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                    <h1>Sentry and Tryton Integration</h1>
+                    <img src="img/sentry-logo.png">
+                    <img src="img/tryton-logo.png">
+                    <p>Available on: <a target="_blank"
+                        href="http://pokoli.github.io/tryton-web-applications-and-portals/">
+                        http://pokoli.github.io/sentry-tryton/</a></p>
+                </section>
+				<section>
+                    <h2> Who am I?</h2>
+                    <h3 class="fragment enfassis">
+                        Sergi Almacellas Abellana</h3>
+                    <ul>
+                        <li class="fragment">(Python &hearts;) Programmer</li>
+                        <li class="fragment">Open source enthusiast</li>
+                        <li class="fragment">Tryton commiter since Nov 2013
+                        </li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>What's sentry?</h2>
+                    <ul>
+                        <li class="fragment enfassis">Error tracking system</li>
+                        <li class="fragment enfassis">Open source</li>
+                        <li class="fragment enfassis">Saas or On Premise</li>
+                        <li class="fragment enfassis">Written in Python</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Sentry features</h2>
+                    <ul>
+                        <li class="fragment enfassis">Group error events</li>
+                        <li class="fragment enfassis">Give context to events</li>
+                        <li class="fragment enfassis">Alerts</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Sentry features</h2>
+                    <h4 class="fragment">Group events</h4>
+                    <img class="fragment" src="img/sentry_events.png">
+                </section>
+				<section>
+                    <h2>Sentry features</h2>
+                    <h4 class="fragment">Give context to events</h4>
+                    <ul>
+                        <li class="fragment enfassis">Traceback</li>
+                        <li class="fragment enfassis">Optional tags</li>
+                        <li class="fragment enfassis">Breadcumbs</li>
+                        <li class="fragment enfassis">User data (if any)</li>
+                        <li class="fragment enfassis">Extra data</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Sentry features</h2>
+                    <h4 class="fragment">Notifications</h4>
+                    <ul>
+                        <li class="fragment enfassis">Alert rules</li>
+                        <li class="fragment enfassis">Workflow</li>
+                    </ul>
+                    <h4 class="fragment">Available Methods</h4>
+                    <ul>
+                        <li class="fragment enfassis">Email (default)</li>
+                        <li class="fragment enfassis">IRC/Slack/Hipchat</li>
+                        <li class="fragment enfassis">Twilio (SMS)</li>
+                        <li class="fragment enfassis">...</li>
+                        <li class="fragment enfassis">Add your plugin here</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>How does sentry work?</h2>
+                    <ul>
+                        <li class="fragment enfassis">Agent on server/client side</li>
+                        <li class="fragment enfassis">Intercept error and send via API</li>
+                        <li class="fragment enfassis">Show feedback to user</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Tryton sentry</h2>
+                    <h3>Before</h3>
+                    <img class="fragment" src="img/tryton_error.png">
+                </section>
+				<section>
+                    <h2>Tryton sentry</h2>
+                    <h3>After</h3>
+                    <img class="fragment" src="img/sentry_error_message.png">
+                    </ul>
+                </section>
+				<section>
+                    <h2>Tryton sentry installation</h2>
+                    <pre class="fragment"><code>
+pip install sentry_tryton
+                    </code></pre>
+                </section>
+				<section>
+                    <h2>Tryton sentry configuration</h2>
+                    <p class="fragment">Edit trytond-logconf.cfg</p>
+                    <pre class="fragment"><code>
+[handler_sentry]
+level=ERROR
+class=sentry_tryton.SentryTrytonHandler
+args=('https://(key):(secret)@(sentry_server)/(project)', 'Error title', 'Use "{event_id}" to reference this error.',)
+                    </code></pre>
+                </section>
+				<section>
+                    <h2>Available Data</h2>
+                    <h4 class="fragment">Event info</h4>
+                    <img class="fragment" src="img/sentry_event_info.png">
+                </section>
+				<section>
+                    <h2>Available Data</h2>
+                    <h4 class="fragment">Traceback</h4>
+                    <img class="fragment" src="img/sentry_traceback.png">
+                </section>
+				<section>
+                    <h2>Available Data</h2>
+                    <h4 class="fragment">Raw Traceback</h4>
+                    <img class="fragment" src="img/sentry_raw_traceback.png">
+                </section>
+				<section>
+                    <h2>Available Data</h2>
+                    <h4 class="fragment">Activated Modules</h4>
+                    <img class="fragment" src="img/sentry_activated_modules.png">
+                </section>
+				<section>
+                    <h2>Available Data</h2>
+                    <h4 class="fragment">Request Context</h4>
+                    <img class="fragment" src="img/sentry_context.png">
+                </section>
+				<section>
+                    <h2>Available Data</h2>
+                    <h4 class="fragment">User Details</h4>
+                    <img class="fragment" src="img/sentry_user_details.png">
+                </section>
+				<section>
+                    <h2>Conclusions</h2>
+                    <ul>
+                    <li class="fragment">Better User Experience</li>
+                    <li class="fragment">More debugging context</li>
+                    <li class="fragment">Error traceability</li>
+                    </ul>
+                </section>
+				<section>
+                    <h1>Thank you!</h1>
+                    <p>The presentation code is avaiable on:</p>
+                    <p><a target="_blank"
+                        href="http://github.com/pokoli/sentry-tryton/">
+                        http://github.com/pokoli/sentry-tryton/
+                    </a></p>
+                    <h1 class="fragment">Questions?</h1>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
